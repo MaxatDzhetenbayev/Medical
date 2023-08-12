@@ -1,7 +1,9 @@
-import React from 'react'
+import { Footer, Header, Layout, SideBar } from "../../shared/ui";
 
-export const LayoutWithSidedar = () => {
-  return (
-	 <div>LayoutWithSidedar</div>
-  )
-}
+export const LayoutWithSidedar = (
+  <Layout
+    footerSlot={<Footer />}
+    headerSlot={<Header />}
+    sidebarSlot={<SideBar />}
+  />
+);
