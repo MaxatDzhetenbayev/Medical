@@ -1,4 +1,35 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-}
+@import url("https://fonts.googleapis.com/css?family=Russo+One:regular");
 
+:root {
+  --text-color: #393e46;
+
+  --link-color: #aad8d3;
+
+  --background-color: #393e46;
+
+  --primary-color: #00adb5;
+  --primary-colorPressed: #aad8d3;
+
+  --secondary-color: #aad8d3;
+  --secondary-colorPressed: #00adb5;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 24px;
+
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: var(--link-color);
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
