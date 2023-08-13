@@ -1,0 +1,19 @@
+.lang {
+  position: relative;
+
+  cursor: pointer;
+
+  background-color: transparent;
+  border: none;
+
+  &_content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 16px;
+    font-family: Inter;
+
+    color: var(--text-alternative-color);
+  }
+}

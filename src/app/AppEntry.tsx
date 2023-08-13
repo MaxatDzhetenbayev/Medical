@@ -1,12 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 
 import { AppRouter } from "./AppRouter.tsx";
 import "./index.css";
+import "../shared/internationalization/i18n.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={AppRouter()} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={AppRouter()} />
+    </Suspense>
   </React.StrictMode>
 );

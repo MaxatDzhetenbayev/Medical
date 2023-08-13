@@ -1,73 +1,77 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { NavLink } from "react-router-dom";
-import styles from "./Header.module.scss";
+
 import { WindowWithList } from "../windowWithList/WindowWithList";
+import { ChangeLang } from "../../../features/changeLanguage/ui/changeLang/ChangeLang";
+
+import styles from "./Header.module.scss";
+
+type NestedLinkType = {
+  path: string;
+  title: () => string;
+};
+
+type LinkType = {
+  path: string;
+  title: () => string;
+  children?: NestedLinkType[];
+};
 
 export const Header = () => {
   const [showSubMenu, setShowSubMenu] = useState(false);
 
-  const toggleSubMenu = (nested: boolean) => {
-    nested && setShowSubMenu(!showSubMenu);
-  };
-
-  console.log(showSubMenu);
-
-  type NestedLinkType = {
-    path: string;
-    title: string;
-  };
-
-  type LinkType = {
-    path: string;
-    title: string;
-    children?: NestedLinkType[];
-  };
+  const { t } = useTranslation();
 
   const linkList: LinkType[] = [
     {
       path: "/",
-      title: "Главная",
+      title: () => t("navigation.main"),
     },
     {
       path: "/facts/prevalence",
-      title: "Основные факты",
+      title: () => t("navigation.fact.title"),
       children: [
         {
           path: "/facts/prevalence",
-          title: "Распространенность КРР",
+          title: () => t("navigation.fact.nested.prevalence"),
         },
         {
           path: "/facts/symptoms",
-          title: "Симптомы КРР",
+          title: () => t("navigation.fact.nested.symptoms"),
         },
         {
           path: "/facts/screening",
-          title: "Скринниг  КРР",
+          title: () => t("navigation.fact.nested.screening"),
         },
         {
           path: "/facts/treatment",
-          title: "Лечение КРР",
+          title: () => t("navigation.fact.nested.treatment"),
         },
         {
           path: "/facts/myths",
-          title: "Мифы о КРР",
+          title: () => t("navigation.fact.nested.myths"),
         },
         {
           path: "/facts/advice",
-          title: "Советы пациентам",
+          title: () => t("navigation.fact.nested.advice"),
         },
       ],
     },
     {
       path: "/quiz",
-      title: "Опросник по самодиагностике",
+      title: () => t("navigation.quiz"),
     },
     {
       path: "/contacs",
-      title: "Контакты",
+      title: () => t("navigation.contact"),
     },
   ];
+
+  const toggleSubMenu = (nested: boolean) => {
+    nested && setShowSubMenu(!showSubMenu);
+  };
 
   return (
     <div className={styles.root}>
@@ -76,14 +80,14 @@ export const Header = () => {
           <ul className={styles.navigate_list}>
             {linkList.map(({ path, title, children }) => {
               const nestedLsit = children?.map((nested) => (
-                <NavLink key={nested.title} to={nested.path}>
+                <NavLink key={nested.path} to={nested.path}>
                   {nested.title}
                 </NavLink>
               ));
 
               return (
                 <li
-                  key={title}
+                  key={path}
                   onMouseEnter={() => toggleSubMenu(!!children)}
                   onMouseLeave={() => toggleSubMenu(!!children)}
                   className={styles.navigate_item}
@@ -97,8 +101,7 @@ export const Header = () => {
             })}
           </ul>
         </nav>
-
-        <div>Русский </div>
+        <ChangeLang />
       </div>
     </div>
   );
