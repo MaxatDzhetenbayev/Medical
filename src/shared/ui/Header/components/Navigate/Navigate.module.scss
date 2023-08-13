@@ -1,0 +1,22 @@
+.navigate {
+  display: block;
+  &_list {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    position: relative;
+  }
+
+  &_item {
+    a {
+      font-size: 16px;
+      color: var(--text-alternative-color);
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .navigate {
+    display: none;
+  }
+}

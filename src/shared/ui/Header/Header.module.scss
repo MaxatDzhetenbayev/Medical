@@ -9,22 +9,19 @@
 
   max-width: 1172px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 40px 10px;
 }
 
-.navigate {
-  &_list {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    position: relative;
-  }
-
-  &_item {
-    a {
-      font-size: 16px;
-      color: var(--text-alternative-color);
-    }
-  }
+.burger {
+  display: none;
 }
 
+@media (max-width: 992px) {
+  .adaptive {
+    display: block;
+  }
+
+  .burger{
+	display: block;
+  }
+}

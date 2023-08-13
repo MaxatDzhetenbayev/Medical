@@ -1,28 +1,21 @@
 import { useState } from "react";
+import { Navigate } from "./components/Navigate/Navigate";
+
+import { ChangeLang } from "../../../features/changeLanguage/ui/changeLang/ChangeLang";
+import { AdaptiveNavigate } from "./components/AdaptiveNavigate/AdaptiveNavigate";
 import { useTranslation } from "react-i18next";
 
-import { NavLink } from "react-router-dom";
-
-import { WindowWithList } from "../windowWithList/WindowWithList";
-import { ChangeLang } from "../../../features/changeLanguage/ui/changeLang/ChangeLang";
-
 import styles from "./Header.module.scss";
-
-type NestedLinkType = {
-  path: string;
-  title: () => string;
-};
-
-type LinkType = {
-  path: string;
-  title: () => string;
-  children?: NestedLinkType[];
-};
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import { LinkType } from "../../types/types";
 
 export const Header = () => {
-  const [showSubMenu, setShowSubMenu] = useState(false);
-
   const { t } = useTranslation();
+  const [showAdaptive, setShowAdaptive] = useState(false);
+
+  const changeAdaptive = () => {
+    setShowAdaptive(!showAdaptive);
+  };
 
   const linkList: LinkType[] = [
     {
@@ -69,38 +62,18 @@ export const Header = () => {
     },
   ];
 
-  const toggleSubMenu = (nested: boolean) => {
-    nested && setShowSubMenu(!showSubMenu);
-  };
-
   return (
     <div className={styles.root}>
       <div className={styles.wrapper}>
-        <nav className={styles.navigate}>
-          <ul className={styles.navigate_list}>
-            {linkList.map(({ path, title, children }) => {
-              const nestedLsit = children?.map((nested) => (
-                <NavLink key={nested.path} to={nested.path}>
-                  {nested.title}
-                </NavLink>
-              ));
-
-              return (
-                <li
-                  key={path}
-                  onMouseEnter={() => toggleSubMenu(!!children)}
-                  onMouseLeave={() => toggleSubMenu(!!children)}
-                  className={styles.navigate_item}
-                >
-                  <NavLink to={path}>{title}</NavLink>
-                  {children && showSubMenu && (
-                    <WindowWithList list={nestedLsit} />
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <span className={styles.burger} onClick={changeAdaptive}>
+          <MenuRoundedIcon />
+        </span>
+        <Navigate linkList={linkList} />
+        {showAdaptive ? (
+          <AdaptiveNavigate linkList={linkList} onClose={changeAdaptive} />
+        ) : (
+          <></>
+        )}
         <ChangeLang />
       </div>
     </div>
