@@ -1,0 +1,8 @@
+.root {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--background-color);
+  padding: 20px;
+}

@@ -2,6 +2,7 @@
 
 :root {
   --text-color: #393e46;
+  --text-alternative-color: #fff;
 
   --link-color: #aad8d3;
 
@@ -20,16 +21,24 @@
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
-  * {
-    box-sizing: border-box;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  a {
-    color: var(--link-color);
-  }
+ul,
+li {
+  list-style-type: none;
+}
 
-  a:hover {
-    text-decoration: none;
-  }
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-color);
 }

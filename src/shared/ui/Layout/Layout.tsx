@@ -1,5 +1,8 @@
-import React, { type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { Outlet } from "react-router-dom";
+
+import styles from "./Layout.module.scss";
+
 type Props = {
   headerSlot: ReactNode;
   footerSlot: ReactNode;
@@ -10,11 +13,11 @@ export const Layout = ({ footerSlot, headerSlot, sidebarSlot }: Props) => {
   return (
     <>
       {headerSlot}
-      <div>
-        <div>
+      <div className={styles.container}>
+        <div className={styles.content}>
           <Outlet />
         </div>
-        {sidebarSlot && <aside>{sidebarSlot}</aside>}
+        {sidebarSlot && <aside className={styles.sidebar}>{sidebarSlot}</aside>}
       </div>
       {footerSlot}
     </>

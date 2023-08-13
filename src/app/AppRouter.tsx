@@ -29,7 +29,7 @@ export const AppRouter = () =>
       errorElement: <div>error</div>,
       children: [
         {
-          path: "/facts",
+          path: "/facts/:page",
           element: <FactPage />,
         },
         {
