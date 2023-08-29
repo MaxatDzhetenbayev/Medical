@@ -1,7 +1,5 @@
-import React from "react";
 
 import styles from "./MainFactsList.module.scss";
-import { Wrapper } from "../../../../shared/ui/Wrapper/Wrapper";
 
 import card_1 from "../../../../assets/images/cards/card_1.png";
 import card_2 from "../../../../assets/images/cards/card_2.jpg";

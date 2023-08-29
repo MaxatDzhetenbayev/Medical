@@ -1,7 +1,5 @@
-import React from "react";
 
 import styles from "./MainTest.module.scss";
-import { Wrapper } from "../../../../shared/ui/Wrapper/Wrapper";
 import { PTag } from "../../../../shared/ui/Paragraph/PTag";
 import { Button } from "../../../../shared/ui/Button/Button";
 

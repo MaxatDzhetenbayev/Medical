@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { HTag } from "../../shared/ui/Head/HTag";
 
 interface Question {
@@ -126,7 +126,7 @@ export const QuizPage = () => {
       for (const key in answers) {
         if (answers[5] === "Да" && answers[6] === "Да") {
           setFinalText(answerList[3]);
-          return;
+          return key;
         }
       }
     }

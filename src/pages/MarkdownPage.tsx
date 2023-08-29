@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import { useTranslation } from "react-i18next";
 import ReactQuill from "react-quill";
 import axios from "axios";
 
@@ -12,7 +11,7 @@ export function MarkdownPage() {
   const handleAddTranslation = async () => {
     const data = {
       content,
-		key: "content",
+      key: "content",
       language,
       page,
     };

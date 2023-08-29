@@ -1,4 +1,3 @@
-import { ReactElement } from "react";
 import styles from "./WindowWithList.module.scss";
 
 type Props = {

@@ -1,7 +1,5 @@
-import React from "react";
 
 import styles from "./MainContent.module.scss";
-import { Wrapper } from "../../../../shared/ui/Wrapper/Wrapper";
 import { HTag } from "../../../../shared/ui/Head/HTag";
 import { PTag } from "../../../../shared/ui/Paragraph/PTag";
 

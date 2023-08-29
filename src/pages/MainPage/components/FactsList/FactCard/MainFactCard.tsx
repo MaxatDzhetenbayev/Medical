@@ -1,4 +1,3 @@
-import React from "react";
 
 import { HTag } from "../../../../../shared/ui/Head/HTag";
 import { NavLink } from "react-router-dom";
