@@ -1,0 +1,23 @@
+.root {
+  min-width: 300px;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  ul,
+  li {
+    list-style-type: none;
+  }
+}
+
+.list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 960px) {
+  .root {
+    display: none;
+  }
+}

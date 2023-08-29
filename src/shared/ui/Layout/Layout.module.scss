@@ -1,23 +1,33 @@
 .root {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
+  display: grid;
+  grid-template-rows: 1fr 10fr 3fr;
+  height: 100vh;
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   gap: 40px;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   gap: 40px;
-  padding: 0px 10px;
+  font-family: Inter, sans-serif;
 }
 
 .sidebar {
   width: 300px;
+}
+
+@media (max-width: 960px) {
+  .sidebar {
+    display: none;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+  }
 }

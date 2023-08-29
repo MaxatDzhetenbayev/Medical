@@ -1,0 +1,10 @@
+.welcome {
+  background-image: url("../../assets//images//bg_main.png");
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  h3 {
+    color: var(--primary-color);
+  }
+}

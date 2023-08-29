@@ -12,6 +12,8 @@ import {
   QuizPage,
 } from "../pages";
 
+import { MarkdownPage } from "../pages/MarkdownPage";
+
 export const AppRouter = () =>
   createBrowserRouter([
     {
@@ -21,6 +23,10 @@ export const AppRouter = () =>
         {
           path: "/",
           element: <MainPage />,
+        },
+        {
+          path: "/mark",
+          element: <MarkdownPage />,
         },
       ],
     },

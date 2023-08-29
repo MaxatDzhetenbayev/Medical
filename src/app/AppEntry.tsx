@@ -5,6 +5,8 @@ import { RouterProvider } from "react-router-dom";
 import { AppRouter } from "./AppRouter.tsx";
 import "./index.css";
 import "../shared/internationalization/i18n.ts";
+import 'react-quill/dist/quill.snow.css';
+
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

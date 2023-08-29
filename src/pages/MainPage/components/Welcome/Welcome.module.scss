@@ -1,0 +1,21 @@
+.root {
+  padding: 180px 0;
+  background-image: url("../../../../assets//images//bg_main.png");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+}
+
+.welcome {
+  max-width: 540px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px;
+  border-radius: 10px;
+
+  background-color: #ffffffc4;
+  color: var(--text-color);
+  h3 {
+    color: var(--primary-color);
+  }
+}

@@ -1,0 +1,17 @@
+.test {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 40px;
+  padding: 30px;
+
+  border-radius: 15px;
+
+  background-color: var(--background-color);
+  color: var(--text-alternative-color);
+
+  p > span {
+    color: var(--secondary-color);
+  }
+}

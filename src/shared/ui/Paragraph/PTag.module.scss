@@ -1,0 +1,26 @@
+.root {
+  font-family: Inter;
+}
+
+.small {
+  font-size: clamp(14px, 4vw, 18px);
+  line-height: 25px;
+}
+
+.normal {
+  font-size: clamp(14px, 4vw, 18px);
+  line-height: clamp(14px, 5vw, 28px);
+  font-weight: 500;
+}
+
+.medium {
+  font-size: clamp(16px, 4vw, 20px);
+  line-height: clamp(20px, 5vw, 31px);
+  font-weight: 700;
+}
+
+.large {
+  font-size: 23px;
+  line-height: 36px;
+  font-weight: 700;
+}

@@ -7,7 +7,7 @@ i18n
   .use(Backend)
   .use(LanguageDetector)
   .init({
-    fallbackLng: "en",
+    fallbackLng: "kz",
     debug: true,
     detection: {
       order: ["queryString", "cookie"],

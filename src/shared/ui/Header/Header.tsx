@@ -23,31 +23,31 @@ export const Header = () => {
       title: () => t("navigation.main"),
     },
     {
-      path: "/facts/prevalence",
+      path: "/facts/1",
       title: () => t("navigation.fact.title"),
       children: [
         {
-          path: "/facts/prevalence",
+          path: "/facts/1",
           title: () => t("navigation.fact.nested.prevalence"),
         },
         {
-          path: "/facts/symptoms",
+          path: "/facts/2",
           title: () => t("navigation.fact.nested.symptoms"),
         },
         {
-          path: "/facts/screening",
+          path: "/facts/3",
           title: () => t("navigation.fact.nested.screening"),
         },
         {
-          path: "/facts/treatment",
+          path: "/facts/4",
           title: () => t("navigation.fact.nested.treatment"),
         },
         {
-          path: "/facts/myths",
+          path: "/facts/5",
           title: () => t("navigation.fact.nested.myths"),
         },
         {
-          path: "/facts/advice",
+          path: "/facts/6",
           title: () => t("navigation.fact.nested.advice"),
         },
       ],
@@ -69,10 +69,8 @@ export const Header = () => {
           <MenuRoundedIcon />
         </span>
         <Navigate linkList={linkList} />
-        {showAdaptive ? (
+        {showAdaptive && (
           <AdaptiveNavigate linkList={linkList} onClose={changeAdaptive} />
-        ) : (
-          <></>
         )}
         <ChangeLang />
       </div>
