@@ -11,33 +11,33 @@ export const SideBar = () => {
   const linkList: LinkType[] = [
     {
       path: "/facts/1",
-      title: () => t("navigation.fact.nested.prevalence"),
+      title: () => t("prevalence"),
     },
     {
       path: "/facts/2",
-      title: () => t("navigation.fact.nested.symptoms"),
+      title: () => t("symptoms"),
     },
     {
       path: "/facts/3",
-      title: () => t("navigation.fact.nested.screening"),
+      title: () => t("screening"),
     },
     {
       path: "/facts/4",
-      title: () => t("navigation.fact.nested.treatment"),
+      title: () => t("treatment"),
     },
     {
       path: "/facts/5",
-      title: () => t("navigation.fact.nested.myths"),
+      title: () => t("myths"),
     },
     {
       path: "/facts/6",
-      title: () => t("navigation.fact.nested.advice"),
+      title: () => t("advice"),
     },
   ];
 
   return (
     <div className={styles.root}>
-      <HTag variant="h4">О Депрессий</HTag>
+      <HTag variant="h4">{t("fact")}</HTag>
       <ul className={styles.list}>
         {linkList.map((link) => (
           <li key={link.path} className={styles.item}>

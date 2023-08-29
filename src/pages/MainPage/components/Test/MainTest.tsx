@@ -1,23 +1,23 @@
-
-import styles from "./MainTest.module.scss";
+import { useTranslation } from "react-i18next";
+import {useNavigate} from 'react-router-dom'
 import { PTag } from "../../../../shared/ui/Paragraph/PTag";
 import { Button } from "../../../../shared/ui/Button/Button";
 
+import styles from "./MainTest.module.scss";
+
 export const MainTest = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate()
+
   return (
     <div className={styles.root}>
       <div className={styles.test}>
         <PTag>
-          Мы предлагаем Вам онлайн опросник для самостоятельной диагностики
-          признаков и симптомов колоректального рака . Опросник состоит из 12
-          вопросов, каждый из которых содержит варианты ответов да/нет. <br />
-          <span>
-            *Стоит указать, что результаты не являются конечным диагнозом.
-            Конечное заключение выдается только после консультации с врачом.
-          </span>
+          {t("maintest-text-first")} <br />
+          <span>{t("maintext-text-second")}</span>
         </PTag>
-        <Button style={{ marginTop: "35px" }} handleCLick={() => {}}>
-          НАЧАТЬ ТЕСТ
+        <Button style={{ marginTop: "35px" }} handleCLick={() => navigate("/quiz")}>
+		  {t("ready-test")} 
         </Button>
       </div>
     </div>

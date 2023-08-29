@@ -20,45 +20,45 @@ export const Header = () => {
   const linkList: LinkType[] = [
     {
       path: "/",
-      title: () => t("navigation.main"),
+      title: () => t("main"),
     },
     {
       path: "/facts/1",
-      title: () => t("navigation.fact.title"),
+      title: () => t("fact"),
       children: [
         {
           path: "/facts/1",
-          title: () => t("navigation.fact.nested.prevalence"),
+          title: () => t("prevalence"),
         },
         {
           path: "/facts/2",
-          title: () => t("navigation.fact.nested.symptoms"),
+          title: () => t("symptoms"),
         },
         {
           path: "/facts/3",
-          title: () => t("navigation.fact.nested.screening"),
+          title: () => t("screening"),
         },
         {
           path: "/facts/4",
-          title: () => t("navigation.fact.nested.treatment"),
+          title: () => t("treatment"),
         },
         {
           path: "/facts/5",
-          title: () => t("navigation.fact.nested.myths"),
+          title: () => t("myths"),
         },
         {
           path: "/facts/6",
-          title: () => t("navigation.fact.nested.advice"),
+          title: () => t("advice"),
         },
       ],
     },
     {
       path: "/quiz",
-      title: () => t("navigation.quiz"),
+      title: () => t("quiz"),
     },
     {
       path: "/contacs",
-      title: () => t("navigation.contact"),
+      title: () => t("contact"),
     },
   ];
 

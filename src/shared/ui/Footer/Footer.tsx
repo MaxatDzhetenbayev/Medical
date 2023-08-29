@@ -13,22 +13,22 @@ export const Footer = () => {
   const inform: LinkType[] = [
     {
       path: "/",
-      title: () => t("navigation.main"),
+      title: () => t("main"),
     },
     {
       path: "/facts/1",
-      title: () => t("navigation.fact.title"),
+      title: () => t("fact"),
     },
   ];
 
   const support: LinkType[] = [
     {
       path: "/quiz",
-      title: () => t("navigation.quiz"),
+      title: () => t("quiz"),
     },
     {
       path: "/contacs",
-      title: () => t("navigation.contact"),
+      title: () => t("contact"),
     },
   ];
 
