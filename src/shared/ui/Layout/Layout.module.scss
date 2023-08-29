@@ -5,17 +5,16 @@
 }
 
 .container {
-  margin-top: 80px;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  max-width: 1200px;
+  width: 100%;
+  margin: 80px auto 0;
+  display: flex;
   gap: 40px;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
   font-family: Inter, sans-serif;
+  flex: 1;
 }
 
 .sidebar {
@@ -25,9 +24,5 @@
 @media (max-width: 960px) {
   .sidebar {
     display: none;
-  }
-
-  .container {
-    grid-template-columns: 1fr;
   }
 }
