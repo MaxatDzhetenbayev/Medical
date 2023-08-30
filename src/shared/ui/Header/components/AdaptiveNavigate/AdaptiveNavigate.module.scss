@@ -5,7 +5,6 @@
   width: 100%;
   height: 100%;
   background-color: #ffffff;
-
   &_wrapper {
     height: 100%;
     display: flex;
@@ -19,6 +18,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    font-family: Inter;
 
     svg {
       font-size: clamp(28px, 7vw, 64px);
@@ -43,4 +43,15 @@
       color: var(--text-color);
     }
   }
+}
+
+.nested_links {
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  padding: 10px 0;
+  font-family: Inter;
+  font-size: clamp(14px, 4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

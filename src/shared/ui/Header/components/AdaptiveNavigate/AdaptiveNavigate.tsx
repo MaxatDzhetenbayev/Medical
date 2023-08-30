@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { WindowWithList } from "../../../windowWithList/WindowWithList";
-
 import { LinkType } from "../../../../types/types";
 
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -34,24 +32,24 @@ export const AdaptiveNavigate = ({ linkList, onClose }: Props) => {
         </button>
         <nav className={styles.adaptive_nav}>
           <ul className={styles.adaptive_list}>
-            {linkList.map(({ path, title, children }) => {
-              const nestedLsit = children?.map((nested) => (
-                <NavLink onClick={onClose} key={nested.path} to={nested.path}>
-                  {nested.title}
-                </NavLink>
-              ));
-
-              return (
-                <li key={path} className={styles.adaptive_item}>
-                  <button onClick={() => goToPath(children, path)}>
-                    {title()}
-                  </button>
-                  {children && showSubMenu && (
-                    <WindowWithList list={nestedLsit} />
-                  )}
-                </li>
-              );
-            })}
+            {linkList.map(({ path, title, children }) => (
+              <li key={path} className={styles.adaptive_item}>
+                <button onClick={() => goToPath(children, path)}>
+                  {title()}
+                </button>
+                {children && showSubMenu && (
+                  <ul className={styles.nested_links}>
+                    {children.map((link) => (
+                      <li key={link.path} className={styles.nested_link}>
+                        <NavLink to={link.path} onClick={onClose}>
+                          {link.title}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
