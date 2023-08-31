@@ -6,7 +6,7 @@
 
   --link-color: #aad8d3;
 
-  --background-color: #393e46;
+  --background-color: #0c80ca;
 
   --primary-color: #00adb5;
   --primary-colorPressed: #aad8d3;
@@ -14,7 +14,7 @@
   --secondary-color: #aad8d3;
   --secondary-colorPressed: #00adb5;
 
-  font-family: Russo One, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 
   font-synthesis: none;
   text-rendering: optimizelegibility;

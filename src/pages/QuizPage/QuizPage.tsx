@@ -150,29 +150,35 @@ export const QuizPage = () => {
         Опросник
       </HTag>
 
-      {questions.map((question) => (
+      {questions.map((question, index) => (
         <div key={question.id}>
-          <p>{question.text}</p>
-          <label>
-            Да
-            <input
-              type="radio"
-              name={`question-${question.id}`}
-              value="Да"
-              checked={answers[question.id] === "Да"}
-              onChange={() => handleAnswerChange(question.id, "Да")}
-            />
-          </label>
-          <label>
-            Нет
-            <input
-              type="radio"
-              name={`question-${question.id}`}
-              value="Нет"
-              checked={answers[question.id] === "Нет"}
-              onChange={() => handleAnswerChange(question.id, "Нет")}
-            />
-          </label>
+          <p>
+            <strong>
+              {index + 1}. {question.text} (Обязательно)
+            </strong>
+          </p>
+          <div>
+            <label>
+              Да
+              <input
+                type="radio"
+                name={`question-${question.id}`}
+                value="Да"
+                checked={answers[question.id] === "Да"}
+                onChange={() => handleAnswerChange(question.id, "Да")}
+              />
+            </label>
+            <label>
+              Нет
+              <input
+                type="radio"
+                name={`question-${question.id}`}
+                value="Нет"
+                checked={answers[question.id] === "Нет"}
+                onChange={() => handleAnswerChange(question.id, "Нет")}
+              />
+            </label>
+          </div>
         </div>
       ))}
       <button onClick={handleSubmit}>Подсчитать результат</button>

@@ -1,16 +1,16 @@
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { WindowWithList } from "../../../../shared/ui/windowWithList/WindowWithList";
-
 import {
   PlayCircleFilledRounded,
   ArrowDropDownCircleRounded,
 } from "@mui/icons-material";
 
 import styles from "./ChangeLang.module.scss";
-import { ChangeButton } from "../changeButton/ChangeButton";
 import { useOutsideClick } from "../../../../shared/hooks/useOutsideClick";
+
+import kz from "../../../../assets/kz.jpg";
+import ru from "../../../../assets/ru.png";
 
 export const ChangeLang = () => {
   const [showLangMenu, setShowLangMenu] = useState(false);
@@ -21,10 +21,12 @@ export const ChangeLang = () => {
     {
       text: "Русский",
       onClick: () => i18n.changeLanguage("ru"),
+      img: ru,
     },
     {
       text: "Казахский",
       onClick: () => i18n.changeLanguage("kz"),
+      img: kz,
     },
   ];
 
@@ -42,10 +44,6 @@ export const ChangeLang = () => {
     attached: showLangMenu,
   });
 
-  const buttonForList = buttonList.map((item) => (
-    <ChangeButton key={item.text} text={item.text} onClick={item.onClick} />
-  ));
-
   return (
     <div
       ref={changeLangRef}
@@ -60,7 +58,18 @@ export const ChangeLang = () => {
           <PlayCircleFilledRounded />
         )}
       </div>
-      {showLangMenu && <WindowWithList list={buttonForList} />}
+      {showLangMenu && (
+        <ul className={styles.menu}>
+          {buttonList?.map((item) => (
+            <li className={styles.menu_item} key={item.text}>
+              <button className={styles.menu_button} onClick={item.onClick}>
+                <img width={20} src={item.img} alt="" />
+                {item.text}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

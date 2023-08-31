@@ -20,7 +20,11 @@ export const Navigate = ({ linkList }: Props) => {
       <ul className={styles.navigate_list}>
         {linkList.map(({ path, title, children }) => {
           const nestedLsit = children?.map((nested) => (
-            <NavLink key={nested.path} to={nested.path}>
+            <NavLink
+              key={nested.path}
+              to={nested.path}
+              style={{ color: "#000" }}
+            >
               {nested.title}
             </NavLink>
           ));

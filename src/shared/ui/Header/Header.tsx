@@ -66,7 +66,7 @@ export const Header = () => {
     <div className={styles.root}>
       <div className={styles.wrapper}>
         <span className={styles.burger} onClick={changeAdaptive}>
-          <MenuRoundedIcon />
+          <MenuRoundedIcon style={{ color: "#fff" }} />
         </span>
         <Navigate linkList={linkList} />
         {showAdaptive && (
