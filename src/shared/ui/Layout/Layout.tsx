@@ -2,8 +2,7 @@ import { type ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 
 import styles from "./Layout.module.scss";
-import clsn from 'classnames';
-import { Container } from "../Container/Container";
+import clsn from "classnames";
 
 type Props = {
   headerSlot: ReactNode;
@@ -15,9 +14,11 @@ export const Layout = ({ footerSlot, headerSlot, sidebarSlot }: Props) => {
   return (
     <div className={styles.root}>
       {headerSlot}
-      <div className={clsn({
-			[styles.container]: sidebarSlot
-		})}>
+      <div
+        className={clsn({
+          [styles.container]: sidebarSlot,
+        })}
+      >
         <div className={styles.content}>
           <Outlet />
         </div>
