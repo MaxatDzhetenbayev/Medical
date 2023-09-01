@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import { HTag } from "../../shared/ui/Head/HTag";
+import { PTag } from "../../shared/ui/Paragraph/PTag";
 
 import styles from "./QuestionPage.module.scss";
-import { PTag } from "../../shared/ui/Paragraph/PTag";
 
 type questionItem = {
   question: () => string;

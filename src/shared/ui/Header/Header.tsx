@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Navigate } from "./components/Navigate/Navigate";
-
-import { ChangeLang } from "../../../features/changeLanguage/ui/changeLang/ChangeLang";
-import { AdaptiveNavigate } from "./components/AdaptiveNavigate/AdaptiveNavigate";
 import { useTranslation } from "react-i18next";
 
-import styles from "./Header.module.scss";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import { Navigate } from "./components/Navigate/Navigate";
+import { AdaptiveNavigate } from "./components/AdaptiveNavigate/AdaptiveNavigate";
+import { ChangeLang } from "../../../features/changeLanguage/ui/changeLang/ChangeLang";
+
 import { LinkType } from "../../types/types";
+
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import styles from "./Header.module.scss";
+import { Container } from "../Container/Container";
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -67,17 +69,19 @@ export const Header = () => {
   ];
 
   return (
-    <div className={styles.root}>
-      <div className={styles.wrapper}>
-        <span className={styles.burger} onClick={changeAdaptive}>
-          <MenuRoundedIcon style={{ color: "#fff" }} />
-        </span>
-        <Navigate linkList={linkList} />
-        {showAdaptive && (
-          <AdaptiveNavigate linkList={linkList} onClose={changeAdaptive} />
-        )}
-        <ChangeLang />
+    <Container otherProps={{ backgroundColor: "var(--background-color)" }}>
+      <div className={styles.root}>
+        <div className={styles.wrapper}>
+          <span className={styles.burger} onClick={changeAdaptive}>
+            <MenuRoundedIcon style={{ color: "#fff" }} />
+          </span>
+          <Navigate linkList={linkList} />
+          {showAdaptive && (
+            <AdaptiveNavigate linkList={linkList} onClose={changeAdaptive} />
+          )}
+          <ChangeLang />
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };

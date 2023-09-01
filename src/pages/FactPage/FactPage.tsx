@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import styles from "./FactPage.module.scss";
+import { Container } from "@mui/material";
 
 type TranslationContentType = {
   id: number;
@@ -44,7 +45,7 @@ export const FactPage = () => {
   return (
     <div className={styles.root}>
       {!loading ? (
-        <>
+        <Container>
           <img
             src={`http://localhost:3001/uploads/${translations?.image}`}
             alt=""
@@ -56,7 +57,7 @@ export const FactPage = () => {
             rehypePlugins={[rehypeRaw as any]}
             skipHtml={false}
           />
-        </>
+        </Container>
       ) : (
         <div className={styles.loader_wrapper}>
           <Dna

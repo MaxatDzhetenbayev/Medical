@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 
+import { Container } from "../../../../shared/ui/Container/Container";
 import { HTag } from "../../../../shared/ui/Head/HTag";
 import { PTag } from "../../../../shared/ui/Paragraph/PTag";
 
@@ -9,14 +10,16 @@ export const MainContent = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.root}>
-      <div className={styles.content}>
-        <HTag variant="h3">{t("whats-cancer-title")}</HTag>
+    <Container mt={80}>
+      <div className={styles.root}>
+        <div className={styles.content}>
+          <HTag variant="h3">{t("whats-cancer-title")}</HTag>
 
-        <PTag style={{ marginTop: "40px", textAlign: "justify" }}>
-        {t("whats-cancer-text")}
-        </PTag>
+          <PTag style={{ marginTop: "40px", textAlign: "justify" }}>
+            {t("whats-cancer-text")}
+          </PTag>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };

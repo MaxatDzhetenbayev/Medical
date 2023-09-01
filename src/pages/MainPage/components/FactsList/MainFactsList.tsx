@@ -1,4 +1,8 @@
-import styles from "./MainFactsList.module.scss";
+import { useTranslation } from "react-i18next";
+
+import { Container } from "../../../../shared/ui/Container/Container";
+
+import { MainFactCard } from "./FactCard/MainFactCard";
 
 import card_1 from "../../../../assets/images/cards/card_1.png";
 import card_2 from "../../../../assets/images/cards/card_2.jpg";
@@ -6,9 +10,8 @@ import card_3 from "../../../../assets/images/cards/card_3.jpg";
 import card_4 from "../../../../assets/images/cards/card_4.jpg";
 import card_5 from "../../../../assets/images/cards/card_5.jpg";
 import card_6 from "../../../../assets/images/cards/card_6.jpg";
-import { MainFactCard } from "./FactCard/MainFactCard";
 
-import { useTranslation } from "react-i18next";
+import styles from "./MainFactsList.module.scss";
 
 export const MainFactsList = () => {
   const { t } = useTranslation();
@@ -47,12 +50,14 @@ export const MainFactsList = () => {
   ];
 
   return (
-    <div className={styles.root}>
-      <div className={styles.facts}>
-        {factList.map((card) => (
-          <MainFactCard key={card.path} {...card} />
-        ))}
+    <Container mt={80}>
+      <div className={styles.root}>
+        <div className={styles.facts}>
+          {factList.map((card) => (
+            <MainFactCard key={card.path} {...card} />
+          ))}
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
