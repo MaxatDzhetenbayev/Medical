@@ -3,7 +3,8 @@
 }
 
 .small {
-  font-size: clamp(14px, 4vw, 18px);
+  font-size: clamp(11px, 4vw, 16px);
+  font-weight: 300;
   line-height: 25px;
 }
 
