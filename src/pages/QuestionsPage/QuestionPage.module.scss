@@ -1,0 +1,29 @@
+.questionList {
+  margin-top: 40px;
+  width: 100%;
+
+  list-style-type: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.questionItem {
+  width: 100%;
+
+  &_button {
+    width: 100%;
+    padding: 2%;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  &_info {
+    border: 3px #efefef solid;
+    border-top: none;
+    padding: 20px;
+	 text-align: justify;
+  }
+}

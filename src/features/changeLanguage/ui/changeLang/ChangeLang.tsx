@@ -24,7 +24,7 @@ export const ChangeLang = () => {
       img: ru,
     },
     {
-      text: "Казахский",
+      text: "Қазақша",
       onClick: () => i18n.changeLanguage("kz"),
       img: kz,
     },

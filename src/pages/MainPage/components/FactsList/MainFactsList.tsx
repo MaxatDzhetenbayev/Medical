@@ -50,7 +50,7 @@ export const MainFactsList = () => {
     <div className={styles.root}>
       <div className={styles.facts}>
         {factList.map((card) => (
-          <MainFactCard {...card} />
+          <MainFactCard key={card.path} {...card} />
         ))}
       </div>
     </div>

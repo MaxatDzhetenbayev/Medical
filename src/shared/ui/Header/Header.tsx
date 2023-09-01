@@ -57,6 +57,10 @@ export const Header = () => {
       title: () => t("quiz"),
     },
     {
+      path: "/questions",
+      title: () => t("questions"),
+    },
+    {
       path: "/contacs",
       title: () => t("contact"),
     },

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import { HTag } from "../../shared/ui/Head/HTag";
 
 import styles from "./QuizPage.module.scss";
@@ -7,80 +9,17 @@ import { Button } from "../../shared/ui/Button/Button";
 
 interface Question {
   id: number;
-  text: string;
+  text: () => string;
   score: number;
 }
 
-interface answer {
+interface Answer {
   title: string;
   text: string;
   color: string;
 }
 
-const questions: Question[] = [
-  {
-    id: 1,
-    text: "Вам 50 лет или больше?",
-    score: 2,
-  },
-  {
-    id: 2,
-    text: "Есть ли у вас полипы в кишечнике?",
-    score: 2,
-  },
-  {
-    id: 3,
-    text: "У ваших родителей, братьев, сестер или детей были полипы толстой кишки? ",
-    score: 2,
-  },
-  {
-    id: 4,
-    text: "Есть ли у Вас хронические воспалительные заболевания кишечника, такие как язвенный колит или болезнь Крона?",
-    score: 2,
-  },
-  {
-    id: 5,
-    text: "У Ваших родителей, детей или супругов был колоректальный рак? ",
-    score: 3,
-  },
-  {
-    id: 6,
-    text: "Есть ли у вас примеси крови в кале?",
-    score: 3,
-  },
-  {
-    id: 7,
-    text: "Есть ли у Вас склонность к запорам?",
-    score: 1,
-  },
-  {
-    id: 8,
-    text: "Употребляете ли Вы каждый день красное мясо?",
-    score: 1,
-  },
-  {
-    id: 9,
-    text: "Употребляете ли Вы каждый день клетчатку (фрукты, овощи, цельнозерновой хлеб и крупы, орехи и бобы)?",
-    score: 1,
-  },
-  {
-    id: 10,
-    text: "Употребляете ли вы алкоголь?",
-    score: 1,
-  },
-  {
-    id: 11,
-    text: "Курите ли Вы?",
-    score: 1,
-  },
-  {
-    id: 12,
-    text: "Ваша ежедневная деятельность связана с физической активностью?",
-    score: 1,
-  },
-];
-
-const answerList: answer[] = [
+const answerList: Answer[] = [
   {
     title: "Низкий риск колоректального рака",
     text: "Ваши результаты указывают на низкую вероятность наличия симптомов колоректального рака. Важно помнить, что этот результат не является заключительным диагнозом.",
@@ -104,18 +43,81 @@ const answerList: answer[] = [
 ];
 
 export const QuizPage = () => {
+  const { t } = useTranslation();
+
+  const questions: Question[] = [
+    {
+      id: 1,
+      text: () => t("questions-list.item-1"),
+      score: 2,
+    },
+    {
+      id: 2,
+      text: () => t("questions-list.item-2"),
+      score: 2,
+    },
+    {
+      id: 3,
+      text: () => t("questions-list.item-3"),
+      score: 2,
+    },
+    {
+      id: 4,
+      text: () => t("questions-list.item-4"),
+
+      score: 2,
+    },
+    {
+      id: 5,
+      text: () => t("questions-list.item-5"),
+
+      score: 3,
+    },
+    {
+      id: 6,
+      text: () => t("questions-list.item-6"),
+      score: 3,
+    },
+    {
+      id: 7,
+      text: () => t("questions-list.item-7"),
+      score: 1,
+    },
+    {
+      id: 8,
+      text: () => t("questions-list.item-8"),
+      score: 1,
+    },
+    {
+      id: 9,
+      text: () => t("questions-list.item-9"),
+      score: 1,
+    },
+    {
+      id: 10,
+      text: () => t("questions-list.item-10"),
+      score: 1,
+    },
+    {
+      id: 11,
+      text: () => t("questions-list.item-11"),
+      score: 1,
+    },
+    {
+      id: 12,
+      text: () => t("questions-list.item-12"),
+      score: 1,
+    },
+  ];
+
   const [answers, setAnswers] = useState<{
-    [questionId: number]: "Да" | "Нет";
+    [questionId: number]: "Yes" | "No";
   }>({});
   const [score, setScore] = useState<number>(0);
-  const [finalText, setFinalText] = useState<answer>({
-    text: "",
-    title: "",
-    color: "",
-  });
+  const [finalText, setFinalText] = useState<Answer | null>();
   const [visible, setVisible] = useState<boolean>(false);
 
-  const handleAnswerChange = (questionId: number, answer: "Да" | "Нет") => {
+  const handleAnswerChange = (questionId: number, answer: "Yes" | "No") => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
       [questionId]: answer,
@@ -152,7 +154,7 @@ export const QuizPage = () => {
   const handleSubmit = () => {
     let newScore = 0;
     questions.forEach((question) => {
-      if (answers[question.id] === "Да") {
+      if (answers[question.id] === "Yes") {
         newScore += question.score;
       }
     });
@@ -172,29 +174,29 @@ export const QuizPage = () => {
           {questions.map((question, index) => (
             <div key={question.id}>
               <PTag style={{ marginTop: 15 }}>
-                {index + 1}. {question.text}
-                <span className={styles.required}>(Обязательно)</span>
+                {index + 1}. {question.text()}
+                <span className={styles.required}>({t("Required")})</span>
               </PTag>
               <div className={styles.labelList}>
                 <label className={styles.label}>
-                  <PTag variant="sm">Да</PTag>
+                  <PTag variant="sm">{t("Yes")}</PTag>
                   <input
                     type="radio"
                     name={`question-${question.id}`}
                     value="Да"
-                    checked={answers[question.id] === "Да"}
-                    onChange={() => handleAnswerChange(question.id, "Да")}
+                    checked={answers[question.id] === "Yes"}
+                    onChange={() => handleAnswerChange(question.id, "Yes")}
                   />
                 </label>
                 <label className={styles.label}>
-                  <PTag variant="sm">Нет</PTag>
+                  <PTag variant="sm">{t("No")}</PTag>
 
                   <input
                     type="radio"
                     name={`question-${question.id}`}
                     value="Нет"
-                    checked={answers[question.id] === "Нет"}
-                    onChange={() => handleAnswerChange(question.id, "Нет")}
+                    checked={answers[question.id] === "No"}
+                    onChange={() => handleAnswerChange(question.id, "No")}
                   />
                 </label>
               </div>
@@ -214,9 +216,11 @@ export const QuizPage = () => {
           </PTag>
           <PTag style={{ marginTop: 10 }}>
             Ваш результат:
-            <span style={{ color: finalText.color }}>"{finalText.title}"</span>.
-            Ваш балл равен:
-            <span style={{ color: finalText.color }}>{score} из 20</span>.
+            <span style={{ color: finalText?.color }}>
+              "{finalText?.title}"
+            </span>
+            . Ваш балл равен:
+            <span style={{ color: finalText?.color }}>{score} из 20</span>.
           </PTag>
           <div
             style={{
@@ -227,7 +231,7 @@ export const QuizPage = () => {
               margin: "20px 0",
             }}
           ></div>
-          <PTag style={{ textAlign: "justify" }}>{finalText.text}</PTag>
+          <PTag style={{ textAlign: "justify" }}>{finalText?.text}</PTag>
         </div>
       )}
     </div>
