@@ -16,7 +16,9 @@
     width: 100%;
     padding: 2%;
     border: none;
-    text-align: left;
+    padding: 20px;
+
+    text-align: justify;
     cursor: pointer;
   }
 
@@ -24,6 +26,6 @@
     border: 3px #efefef solid;
     border-top: none;
     padding: 20px;
-	 text-align: justify;
+    text-align: justify;
   }
 }
