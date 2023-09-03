@@ -1,5 +1,6 @@
 import { HTag } from "../../../../../shared/ui/Head/HTag";
 import { NavLink } from "react-router-dom";
+import { motion, Variants } from "framer-motion";
 
 import styles from "./MainFactCard.module.scss";
 interface Props {
@@ -16,11 +17,21 @@ export const MainFactCard = ({ img, path, title }: Props) => {
   };
 
   return (
-    <NavLink to={path} className={styles.root}>
-      <div className={styles.image} style={{ ...divStyle }}></div>
-      <div className={styles.content}>
-        <HTag variant="h4">{title()}</HTag>
-      </div>
-    </NavLink>
+    <motion.div
+      whileHover={{
+        scale: 1.1,
+        transition: {
+          ease: "easeInOut",
+        },
+      }}
+      className={styles.root}
+    >
+      <NavLink to={path}>
+        <div className={styles.image} style={{ ...divStyle }}></div>
+        <div className={styles.content}>
+          <HTag variant="h4">{title()}</HTag>
+        </div>
+      </NavLink>
+    </motion.div>
   );
 };
