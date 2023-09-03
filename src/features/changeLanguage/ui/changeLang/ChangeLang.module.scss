@@ -28,15 +28,6 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 5px;
 
-  ::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    right: 15px;
-    border: 10px solid transparent;
-    border-bottom: 10px solid #fff;
-  }
-
   &_button {
     display: flex;
     width: 100%;

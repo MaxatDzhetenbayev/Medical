@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { motion, Variants } from "framer-motion";
+
 import { ArrowRight, ArrowDropDown } from "@mui/icons-material";
 
 import styles from "./ChangeLang.module.scss";
@@ -13,6 +15,25 @@ export const ChangeLang = () => {
   const [showLangMenu, setShowLangMenu] = useState(false);
   const changeLangRef = useRef(null);
   const { i18n, t } = useTranslation();
+
+  const menuVariants: Variants = {
+    open: {
+      visibility: "visible",
+      y: 0,
+      transition: {
+        type: "spring",
+        duration: 0.5,
+      },
+    },
+    closed: {
+      y: -20,
+      visibility: "hidden",
+      transition: {
+        type: "spring",
+        duration: 0.3,
+      },
+    },
+  };
 
   const buttonList = [
     {
@@ -51,18 +72,22 @@ export const ChangeLang = () => {
         <span>{t("lang")}</span>
         {showLangMenu ? <ArrowDropDown /> : <ArrowRight />}
       </div>
-      {showLangMenu && (
-        <ul className={styles.menu}>
-          {buttonList?.map((item) => (
-            <li className={styles.menu_item} key={item.text}>
-              <button className={styles.menu_button} onClick={item.onClick}>
-                <img width={20} src={item.img} alt="" />
-                {item.text}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+      {/* {showLangMenu && ( */}
+      <motion.ul
+        animate={showLangMenu ? "open" : "closed"}
+        variants={menuVariants}
+        className={styles.menu}
+      >
+        {buttonList?.map((item) => (
+          <li className={styles.menu_item} key={item.text}>
+            <button className={styles.menu_button} onClick={item.onClick}>
+              <img width={20} src={item.img} alt="" />
+              {item.text}
+            </button>
+          </li>
+        ))}
+      </motion.ul>
+      {/* )} */}
     </div>
   );
 };
