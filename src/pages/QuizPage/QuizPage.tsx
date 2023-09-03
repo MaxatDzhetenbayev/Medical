@@ -125,30 +125,26 @@ export const QuizPage = () => {
   };
 
   const handleAnswer = (score: number) => {
+    console.log(score);
     if (score === 0) {
       setFinalText(answerList[0]);
-      return;
     }
     if (score >= 1 && score <= 6) {
       setFinalText(answerList[1]);
-      return;
     }
     if (score >= 7 && score <= 13) {
       setFinalText(answerList[2]);
-      return;
     }
     if (score >= 14) {
       setFinalText(answerList[3]);
-      return;
     }
-    //  if (score <= 13) {
-    //    for (const key in answers) {
-    //      if (answers[5] === "Да" && answers[6] === "Да") {
-    //        setFinalText(answerList[3]);
-    //        return key;
-    //      }
-    //    }
-    //  }
+    if (score <= 13) {
+      for (const key in answers) {
+        if (answers[5] === "Yes" && answers[6] === "Yes") {
+          setFinalText(answerList[3]);
+        }
+      }
+    }
   };
 
   const handleSubmit = () => {
@@ -159,7 +155,7 @@ export const QuizPage = () => {
       }
     });
     setScore(newScore);
-    handleAnswer(score);
+    handleAnswer(newScore);
     setVisible(true);
   };
 

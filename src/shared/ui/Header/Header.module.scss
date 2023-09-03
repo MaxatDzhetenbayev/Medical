@@ -7,11 +7,11 @@
 .wrapper {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 
   max-width: 1172px;
   margin: 0 auto;
-  padding: 40px 10px;
 }
 
 .burger {

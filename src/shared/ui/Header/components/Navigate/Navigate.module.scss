@@ -4,15 +4,37 @@
     display: flex;
     align-items: center;
     gap: 25px;
-    position: relative;
   }
 
   &_item {
-    a {
+    position: relative;
+
+    > a {
+      display: inline-block;
+      padding: 25px 0;
+
       font-size: 16px;
-      color: var(--text-alternative-color);
+      color: var(--text-color);
+
+      border-bottom: 5px solid transparent;
+
+      &:hover {
+        border-bottom: 5px solid var(--link-hover-color);
+      }
     }
   }
+}
+
+.childrenLinks {
+  top: 74px;
+  position: absolute;
+  background: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.childrenItem {
+  min-width: 200px;
+  padding: 10px;
 }
 
 @media (max-width: 960px) {

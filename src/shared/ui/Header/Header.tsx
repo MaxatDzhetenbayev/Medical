@@ -4,12 +4,13 @@ import { useTranslation } from "react-i18next";
 import { Navigate } from "./components/Navigate/Navigate";
 import { AdaptiveNavigate } from "./components/AdaptiveNavigate/AdaptiveNavigate";
 import { ChangeLang } from "../../../features/changeLanguage/ui/changeLang/ChangeLang";
+import { Container } from "../Container/Container";
 
 import { LinkType } from "../../types/types";
 
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+
 import styles from "./Header.module.scss";
-import { Container } from "../Container/Container";
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -69,11 +70,11 @@ export const Header = () => {
   ];
 
   return (
-    <Container otherProps={{ backgroundColor: "var(--background-color)" }}>
+    <Container otherProps={{ boxShadow: "0px 1px 2px 1px rgba(0, 0, 0, 0.1)" }}>
       <div className={styles.root}>
         <div className={styles.wrapper}>
           <span className={styles.burger} onClick={changeAdaptive}>
-            <MenuRoundedIcon style={{ color: "#fff" }} />
+            <MenuRoundedIcon style={{ color: "var(--primary-color)" }} />
           </span>
           <Navigate linkList={linkList} />
           {showAdaptive && (

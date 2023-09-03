@@ -1,20 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Russo+One:regular");
 @import url("https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900");
 :root {
-  --text-color: #393e46;
+  /* *Global colors */
+  --primary-color: #2397df;
+  --secondary-color: #2e3237;
+
+  --background-color: var(--primary-color);
+
+  /* *Element colors */
+  --text-color: var(--secondary-color);
   --text-alternative-color: #fff;
 
-  --link-color: #aad8d3;
+  --link-color: var(--primary-color);
 
-  --background-color: #0c80ca;
+  --button-primary-bg: var(--primary-color);
+  --button-primary-text: #fff;
 
-  --primary-color: #0c80ca;
-  --primary-colorPressed: #2397df;
+  --button-secondary-bg: var(--secondary-color);
+  --button-secondary-text: #fff;
 
-  --secondary-color: #aad8d3;
-  --secondary-colorPressed: #00adb5;
+  /* *Visited colors */
+  --visited-link-color: #8a2be2;
 
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  /* *Hover colors */
+  --link-hover-color: #0366cf;
+  --button-primary-hover-bg: #0056b3;
+  --button-secondary-hover-bg: #5a6268;
+
+  font-family: Inter, "Times New Roman", Times, serif;
 
   font-synthesis: none;
   text-rendering: optimizelegibility;
