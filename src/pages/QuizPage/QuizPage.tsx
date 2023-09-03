@@ -142,6 +142,7 @@ export const QuizPage = () => {
       for (const key in answers) {
         if (answers[5] === "Yes" && answers[6] === "Yes") {
           setFinalText(answerList[3]);
+          return key;
         }
       }
     }
