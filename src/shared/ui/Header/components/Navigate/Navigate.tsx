@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import { WindowWithList } from "../../../windowWithList/WindowWithList";
-
 import { LinkType } from "../../../../types/types";
 
 import styles from "./Navigate.module.scss";
-import { PTag } from "../../../Paragraph/PTag";
 
 type Props = {
   linkList: LinkType[];
@@ -23,16 +20,6 @@ export const Navigate = ({ linkList }: Props) => {
     <nav className={styles.navigate}>
       <ul className={styles.navigate_list}>
         {linkList.map(({ path, title, children }) => {
-          const nestedList = children?.map((nested) => (
-            <NavLink
-              key={nested.path}
-              to={nested.path}
-              style={{ color: "#000" }}
-            >
-              <PTag>{nested.title()}</PTag>
-            </NavLink>
-          ));
-
           return (
             <li
               key={path}
@@ -41,20 +28,15 @@ export const Navigate = ({ linkList }: Props) => {
               className={styles.navigate_item}
             >
               <NavLink to={path}>{title}</NavLink>
-              {
-                children && showSubMenu && (
-                  <ul className={styles.childrenLinks}>
-                    {children?.map(({ path, title }) => (
-                      <li className={styles.childrenItem} key={path}>
-                        <NavLink to={path} style={{ color: "#000" }}>
-                          {title()}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                )
-                //   <WindowWithList list={nestedLsit} />
-              }
+              {children && showSubMenu && (
+                <ul className={styles.childrenLinks}>
+                  {children?.map(({ path, title }) => (
+                    <li className={styles.childrenItem} key={path}>
+                      <NavLink to={path}>{title()}</NavLink>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           );
         })}
