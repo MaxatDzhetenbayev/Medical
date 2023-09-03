@@ -50,7 +50,7 @@ export const FactPage = () => {
             src={`http://localhost:3001/uploads/${translations?.image}`}
             alt=""
             width="100%"
-            style={{ marginBottom: 30 }}
+            style={{ marginBottom: 30, maxHeight: "450px", objectFit: "cover" }}
           />
           <ReactMarkdown
             children={translations?.content || ""}
