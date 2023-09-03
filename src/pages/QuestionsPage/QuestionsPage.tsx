@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { motion, Variants } from "framer-motion";
 
 import { HTag } from "../../shared/ui/Head/HTag";
 import { PTag } from "../../shared/ui/Paragraph/PTag";
@@ -21,31 +22,31 @@ export const QuestionsPage = () => {
       answer: () => t("whatIsPolyp-text"),
       isAnswerView: false,
     },
-     {
-       question: () => t("whatCausesCancer-title"),
-       answer: () => t("whatCausesCancer-text"),
-       isAnswerView: false,
-     },
-     {
-       question: () => t("howCommonIsCancer-title"),
-       answer: () => t("howCommonIsCancer-text"),
-       isAnswerView: false,
-     },
-     {
-       question: () => t("whoRiskCancer-title"),
-       answer: () => t("whoRiskCancer-text"),
-       isAnswerView: false,
-     },
-     {
-       question: () => t("howCancerBePrevented-title"),
-       answer: () => t("howCancerBePrevented-text"),
-       isAnswerView: false,
-     },
-     {
-       question: () => t("whatTheScreeningCancer-title"),
-       answer: () => t("whatTheScreeningCancer-text"),
-       isAnswerView: false,
-     },
+    {
+      question: () => t("whatCausesCancer-title"),
+      answer: () => t("whatCausesCancer-text"),
+      isAnswerView: false,
+    },
+    {
+      question: () => t("howCommonIsCancer-title"),
+      answer: () => t("howCommonIsCancer-text"),
+      isAnswerView: false,
+    },
+    {
+      question: () => t("whoRiskCancer-title"),
+      answer: () => t("whoRiskCancer-text"),
+      isAnswerView: false,
+    },
+    {
+      question: () => t("howCancerBePrevented-title"),
+      answer: () => t("howCancerBePrevented-text"),
+      isAnswerView: false,
+    },
+    {
+      question: () => t("whatTheScreeningCancer-title"),
+      answer: () => t("whatTheScreeningCancer-text"),
+      isAnswerView: false,
+    },
   ]);
 
   const handleSetView = (quest: string) => {
@@ -58,27 +59,50 @@ export const QuestionsPage = () => {
     setQuestionList(updatedList);
   };
 
+  const variant: Variants = {
+    open: {
+      style: { borderColor: "var(--primary-color)" },
+      borderColor: "var(--primary-color)",
+    },
+    closed: {
+      borderColor: "transparent",
+      height: 0,
+      padding: 0,
+      overflow: "hidden",
+    },
+  };
+
   return (
     <div>
       <HTag>ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ О КОЛОРЕКТАЛЬНОМ РАКЕ.</HTag>
 
-      <ul className={styles.questionList}>
+      <motion.ul className={styles.questionList}>
         {questionList.map((item) => (
-          <li key={item.question()} className={styles.questionItem}>
-            <button
+          <motion.li
+            animate={item.isAnswerView ? "open" : "closed"}
+            key={item.question()}
+            className={styles.questionItem}
+          >
+            <motion.button
+              variants={{
+                open: {
+                  backgroundColor: "var(--primary-color",
+                  color: "var(--text-alternative-color)",
+                },
+              }}
               className={styles.questionItem_button}
               onClick={() => handleSetView(item.question())}
             >
               <PTag>{item.question()}</PTag>
-            </button>
-            {item.isAnswerView && (
-              <div className={styles.questionItem_info}>
-                <PTag>{item.answer()}</PTag>
-              </div>
-            )}
-          </li>
+            </motion.button>
+            {/* {item.isAnswerView && ( */}
+            <motion.div variants={variant} className={styles.questionItem_info}>
+              <PTag>{item.answer()}</PTag>
+            </motion.div>
+            {/* )} */}
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </div>
   );
 };
