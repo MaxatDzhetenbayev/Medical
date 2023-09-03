@@ -95,11 +95,9 @@ export const QuestionsPage = () => {
             >
               <PTag>{item.question()}</PTag>
             </motion.button>
-            {/* {item.isAnswerView && ( */}
             <motion.div variants={variant} className={styles.questionItem_info}>
               <PTag>{item.answer()}</PTag>
             </motion.div>
-            {/* )} */}
           </motion.li>
         ))}
       </motion.ul>
