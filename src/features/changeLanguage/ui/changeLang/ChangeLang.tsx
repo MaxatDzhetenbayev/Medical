@@ -1,10 +1,7 @@
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import {
-  PlayCircleFilledRounded,
-  ArrowDropDownCircleRounded,
-} from "@mui/icons-material";
+import { ArrowRight, ArrowDropDown } from "@mui/icons-material";
 
 import styles from "./ChangeLang.module.scss";
 import { useOutsideClick } from "../../../../shared/hooks/useOutsideClick";
@@ -52,11 +49,7 @@ export const ChangeLang = () => {
     >
       <div className={styles.lang_content}>
         <span>{t("lang")}</span>
-        {showLangMenu ? (
-          <ArrowDropDownCircleRounded />
-        ) : (
-          <PlayCircleFilledRounded />
-        )}
+        {showLangMenu ? <ArrowDropDown /> : <ArrowRight />}
       </div>
       {showLangMenu && (
         <ul className={styles.menu}>
