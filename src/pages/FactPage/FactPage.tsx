@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { useTranslation } from "react-i18next";
 
 import axios from "axios";
 import rehypeRaw from "rehype-raw";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+
+import { serverPath } from "../../shared/consts/consts";
+
+import { Container } from "@mui/material";
 import { Dna } from "react-loader-spinner";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
 
 import styles from "./FactPage.module.scss";
-import { Container } from "@mui/material";
 
 type TranslationContentType = {
   id: number;
@@ -29,7 +32,7 @@ export const FactPage = () => {
     try {
       setLoading(true);
       const { data } = await axios.get<TranslationContentType>(
-        `http://localhost:3001/api/translations/content?lang=${i18n.language}&page=${page}`
+        `${serverPath}/api/translations/content?lang=${i18n.language}&page=${page}`
       );
       setTranslations(data);
       setLoading(false);
@@ -47,7 +50,7 @@ export const FactPage = () => {
       {!loading ? (
         <Container>
           <img
-            src={`http://localhost:3001/uploads/${translations?.image}`}
+            src={`${serverPath}/uploads/${translations?.image}`}
             alt=""
             width="100%"
             style={{ marginBottom: 30, maxHeight: "450px", objectFit: "cover" }}
