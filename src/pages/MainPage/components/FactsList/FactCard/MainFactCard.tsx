@@ -1,6 +1,6 @@
 import { HTag } from "../../../../../shared/ui/Head/HTag";
 import { NavLink } from "react-router-dom";
-import { motion, Variants } from "framer-motion";
+import { motion} from "framer-motion";
 
 import styles from "./MainFactCard.module.scss";
 interface Props {
