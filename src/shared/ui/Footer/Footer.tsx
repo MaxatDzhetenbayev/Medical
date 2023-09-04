@@ -34,21 +34,21 @@ export const Footer = () => {
   ];
 
   return (
-    <Container mt={80} otherProps={{ backgroundColor: "var(--background-color)" }}>
+    <Container
+      mt={80}
+      otherProps={{ backgroundColor: "var(--background-color)" }}
+    >
       <div className={styles.root}>
         <div className={styles.footer}>
           <div>
             <PTag variant="md" className={styles.title}>
-              Сайта по самовыявлению симптомов и признаков колоректального рака
+              {t("footer.site")}
             </PTag>
-            <PTag className={styles.content}>
-              Опросник для самостоятельной диагностики признаков и симптомов
-              колоректального рака
-            </PTag>
+            <PTag className={styles.content}>{t("footer.questionnaire")}</PTag>
           </div>
           <div>
             <PTag variant="md" className={styles.title}>
-              Полезная информация
+              {t("footer.helpfull")}
             </PTag>
             <ul className={styles.content}>
               {inform.map((link) => (
@@ -62,7 +62,7 @@ export const Footer = () => {
           </div>
           <div>
             <PTag variant="md" className={styles.title}>
-              Поддержка
+				{t("footer.support")}
             </PTag>
             <ul className={styles.content}>
               {support.map((link) => (

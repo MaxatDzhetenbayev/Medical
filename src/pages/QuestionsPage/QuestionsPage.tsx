@@ -74,7 +74,7 @@ export const QuestionsPage = () => {
 
   return (
     <div>
-      <HTag>ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ О КОЛОРЕКТАЛЬНОМ РАКЕ.</HTag>
+      <HTag>{t("questions-title")}</HTag>
 
       <motion.ul className={styles.questionList}>
         {questionList.map((item) => (
