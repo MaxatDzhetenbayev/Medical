@@ -15,8 +15,17 @@ export const MainContent = () => {
         <div className={styles.content}>
           <HTag variant="h3">{t("whats-cancer-title")}</HTag>
 
-          <PTag style={{ marginTop: "40px", textAlign: "justify" }}>
-            <Markdown >{t("whats-cancer-text")}</Markdown>
+          <PTag style={{ marginTop: "10px", textAlign: "justify" }}>
+            <Markdown>{t("whats-cancer.text-1")}</Markdown>
+          </PTag>
+          <PTag style={{ marginTop: "10px", textAlign: "justify" }}>
+            <Markdown>{t("whats-cancer.text-2")}</Markdown>
+          </PTag>
+          <PTag style={{ marginTop: "10px", textAlign: "justify" }}>
+            <Markdown>{t("whats-cancer.text-3")}</Markdown>
+          </PTag>
+          <PTag style={{ marginTop: "10px", textAlign: "justify", color: "var(--primary-color)" }}>
+            <Markdown>{t("whats-cancer.text-4")}</Markdown>
           </PTag>
         </div>
       </div>
