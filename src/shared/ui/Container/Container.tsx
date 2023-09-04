@@ -26,7 +26,7 @@ export const Container = ({
 }: ContainerProps) => {
   const containerStyle: CSSProperties = {
     backgroundImage: `url(${backgroundImageUrl})`,
-    backgroundSize: "cover",
+    backgroundSize: "cover",	
     ...otherProps,
   };
 
