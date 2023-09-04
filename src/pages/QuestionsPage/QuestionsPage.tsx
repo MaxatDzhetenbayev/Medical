@@ -64,7 +64,7 @@ export const QuestionsPage = () => {
       style: { borderColor: "var(--primary-color)" },
       borderColor: "var(--primary-color)",
       height: "auto",
-      padding: "20px 20px",
+      padding: "0px 20px",
     },
     closed: {
       borderColor: "transparent",
@@ -98,7 +98,7 @@ export const QuestionsPage = () => {
               <PTag>{item.question()}</PTag>
             </motion.button>
             <motion.div variants={variant} className={styles.questionItem_info}>
-              <PTag>{item.answer()}</PTag>
+              <PTag style={{padding: "20px 0px"}}>{item.answer()}</PTag>
             </motion.div>
           </motion.li>
         ))}

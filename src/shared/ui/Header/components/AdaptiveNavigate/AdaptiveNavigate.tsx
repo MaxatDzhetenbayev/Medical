@@ -17,7 +17,7 @@ export const AdaptiveNavigate = ({ linkList, onClose }: Props) => {
   const parentvariants: Variants = {
     open: {
       visibility: "visible",
-      padding: "10px 20px",
+      padding: "0px 20px",
       height: "auto",
       transition: {
         type: "spring",
