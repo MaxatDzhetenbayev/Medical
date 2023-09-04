@@ -7,8 +7,6 @@ import { ChangeLang } from "../../../features/changeLanguage/ui/changeLang/Chang
 import { Container } from "../Container/Container";
 
 import { LinkType } from "../../types/types";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { SvgIconTypeMap } from "@mui/material";
 
 import {
   MenuRounded,
@@ -21,7 +19,7 @@ import {
 
 import styles from "./Header.module.scss";
 
-export type NewLinkType = LinkType & {icon: JSX.Element};
+export type NewLinkType = LinkType & { icon: JSX.Element };
 
 export const Header = () => {
   const { t } = useTranslation();
