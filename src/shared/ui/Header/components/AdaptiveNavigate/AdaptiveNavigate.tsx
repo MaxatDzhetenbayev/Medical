@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { LinkType } from "../../../../types/types";
-
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+
 import styles from "./AdaptiveNavigate.module.scss";
+import { NewLinkType } from "../../Header";
 
 type Props = {
-  linkList: LinkType[];
+  linkList: NewLinkType[];
   onClose: () => void;
 };
 
@@ -27,14 +27,17 @@ export const AdaptiveNavigate = ({ linkList, onClose }: Props) => {
   return (
     <div className={styles.adaptive}>
       <div className={styles.adaptive_wrapper}>
-        <button className={styles.adaptive_button} onClick={() => onClose()}>
-          <CloseRoundedIcon />
-        </button>
+        <div className={styles.adaptive_heading}>
+          <button className={styles.adaptive_button} onClick={() => onClose()}>
+            <CloseRoundedIcon />
+          </button>
+        </div>
         <nav className={styles.adaptive_nav}>
           <ul className={styles.adaptive_list}>
-            {linkList.map(({ path, title, children }) => (
+            {linkList.map(({ path, title, icon, children }) => (
               <li key={path} className={styles.adaptive_item}>
                 <button onClick={() => goToPath(children, path)}>
+                  {icon}
                   {title()}
                 </button>
                 {children && showSubMenu && (

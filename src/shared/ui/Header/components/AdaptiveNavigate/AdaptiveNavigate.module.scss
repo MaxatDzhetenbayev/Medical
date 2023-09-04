@@ -1,16 +1,26 @@
 .adaptive {
   position: fixed;
+
   top: 0;
   left: 0;
+  z-index: 10;
+
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+
+  overflow-y: scroll;
+
+  background-color: #fff;
   &_wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
-    margin: 30px 20px 0;
     gap: 30px;
+  }
+
+  &_heading {
+    padding: 20px;
+    border-bottom: 1px solid black;
   }
 
   &_button {
@@ -26,32 +36,55 @@
   }
 
   &_nav {
-    align-self: center;
+    padding: 20px;
+    align-self: flex-start;
+    width: 100%;
   }
 
   &_list {
     display: flex;
     flex-direction: column;
     gap: clamp(5px, 2vw, 30px);
+    width: 100%;
   }
 
   &_item {
     button {
-      font-size: clamp(16px, 4vw, 34px);
-      border: none;
+      width: 100%;
+      padding: 10px 20px;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+
       background-color: transparent;
+      border: none;
+
+      font-size: clamp(16px, 4vw, 34px);
       color: var(--text-color);
+
+      svg {
+        font-size: clamp(14px, 5vw, 32px);
+      }
     }
   }
 }
 
 .nested_links {
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
-  padding: 10px 0;
-  font-family: Inter;
-  font-size: clamp(14px, 4vw, 28px);
+  padding: 10px 20px;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+
+  font-family: Inter;
+  font-size: clamp(14px, 4vw, 28px);
+}
+
+.nested_link {
+  padding: 10px;
 }

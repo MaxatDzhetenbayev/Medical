@@ -7,10 +7,21 @@ import { ChangeLang } from "../../../features/changeLanguage/ui/changeLang/Chang
 import { Container } from "../Container/Container";
 
 import { LinkType } from "../../types/types";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { SvgIconTypeMap } from "@mui/material";
 
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import {
+  MenuRounded,
+  Phone,
+  House,
+  Quiz,
+  FactCheck,
+  QuestionMark,
+} from "@mui/icons-material/";
 
 import styles from "./Header.module.scss";
+
+export type NewLinkType = LinkType & {icon: JSX.Element};
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -20,14 +31,16 @@ export const Header = () => {
     setShowAdaptive(!showAdaptive);
   };
 
-  const linkList: LinkType[] = [
+  const linkList: NewLinkType[] = [
     {
       path: "/",
       title: () => t("main"),
+      icon: <House />,
     },
     {
       path: "/facts/1",
       title: () => t("fact"),
+      icon: <FactCheck />,
       children: [
         {
           path: "/facts/1",
@@ -58,14 +71,17 @@ export const Header = () => {
     {
       path: "/quiz",
       title: () => t("quiz"),
+      icon: <Quiz />,
     },
     {
       path: "/questions",
       title: () => t("questions"),
+      icon: <QuestionMark />,
     },
     {
       path: "/contacs",
       title: () => t("contact"),
+      icon: <Phone />,
     },
   ];
 
@@ -74,7 +90,7 @@ export const Header = () => {
       <div className={styles.root}>
         <div className={styles.wrapper}>
           <span className={styles.burger} onClick={changeAdaptive}>
-            <MenuRoundedIcon style={{ color: "var(--primary-color)" }} />
+            <MenuRounded style={{ color: "var(--primary-color)" }} />
           </span>
           <Navigate linkList={linkList} />
           {showAdaptive && (
