@@ -15,7 +15,7 @@ export const MainTest = () => {
     <Container mt={40}>
       <div className={styles.root}>
         <div className={styles.test}>
-          <PTag>
+          <PTag variant="md">
             {t("maintest-text-first")} <br />
             <span>{t("maintext-text-second")}</span>
           </PTag>

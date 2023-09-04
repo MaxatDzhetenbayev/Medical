@@ -41,15 +41,19 @@ export const Footer = () => {
       <div className={styles.root}>
         <div className={styles.footer}>
           <div>
-            <PTag variant="md" className={styles.title}>
-              {t("footer.site")}
-            </PTag>
-            <PTag className={styles.content}>{t("footer.questionnaire")}</PTag>
+            <PTag className={styles.title}>{t("footer.site")}</PTag>
+            <ul className={styles.content}>
+              <li>
+                <NavLink style={{ color: "#fff" }} to={"/quiz"}>
+                  <PTag className={styles.content}>
+                    {t("footer.questionnaire")}
+                  </PTag>
+                </NavLink>
+              </li>
+            </ul>
           </div>
           <div>
-            <PTag variant="md" className={styles.title}>
-              {t("footer.helpfull")}
-            </PTag>
+            <PTag className={styles.title}>{t("footer.helpfull")}</PTag>
             <ul className={styles.content}>
               {inform.map((link) => (
                 <li key={link.path}>
@@ -61,9 +65,7 @@ export const Footer = () => {
             </ul>
           </div>
           <div>
-            <PTag variant="md" className={styles.title}>
-				{t("footer.support")}
-            </PTag>
+            <PTag className={styles.title}>{t("footer.support")}</PTag>
             <ul className={styles.content}>
               {support.map((link) => (
                 <li key={link.path}>

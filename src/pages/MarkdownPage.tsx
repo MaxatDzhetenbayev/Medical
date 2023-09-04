@@ -2,7 +2,7 @@ import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import axios from "axios";
-
+import { serverPath } from "../shared/consts/consts";
 export function MarkdownPage() {
   const [content, setContent] = useState("");
   const [language, setLanguage] = useState("kz");
@@ -17,10 +17,7 @@ export function MarkdownPage() {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3001/add-translation",
-        data
-      );
+      const response = await axios.post(`${serverPath}/add-translation`, data);
 
       if ((response.status = 201)) {
         console.log("Translation added successfully!");

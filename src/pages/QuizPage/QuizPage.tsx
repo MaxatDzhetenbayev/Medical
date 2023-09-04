@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-
 import { HTag } from "../../shared/ui/Head/HTag";
 
 import { PTag } from "../../shared/ui/Paragraph/PTag";

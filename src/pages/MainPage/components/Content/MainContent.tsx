@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-
+import Markdown from "react-markdown";
 import { Container } from "../../../../shared/ui/Container/Container";
 import { HTag } from "../../../../shared/ui/Head/HTag";
 import { PTag } from "../../../../shared/ui/Paragraph/PTag";
@@ -16,7 +16,7 @@ export const MainContent = () => {
           <HTag variant="h3">{t("whats-cancer-title")}</HTag>
 
           <PTag style={{ marginTop: "40px", textAlign: "justify" }}>
-            {t("whats-cancer-text")}
+            <Markdown >{t("whats-cancer-text")}</Markdown>
           </PTag>
         </div>
       </div>
