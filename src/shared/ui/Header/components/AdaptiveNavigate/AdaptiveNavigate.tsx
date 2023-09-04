@@ -18,7 +18,7 @@ export const AdaptiveNavigate = ({ linkList, onClose }: Props) => {
     open: {
       visibility: "visible",
       padding: "10px 20px",
-      height: 400,
+      height: "auto",
       transition: {
         type: "spring",
         delayChildren: 0.1,
@@ -26,8 +26,8 @@ export const AdaptiveNavigate = ({ linkList, onClose }: Props) => {
       },
     },
     closed: {
-      height: 0,
       padding: "0px 20px",
+      height: 0,
       visibility: "hidden",
       transition: {
         type: "spring",
@@ -75,6 +75,8 @@ export const AdaptiveNavigate = ({ linkList, onClose }: Props) => {
                       <motion.li
                         variants={{
                           open: {
+                            y: 0,
+
                             opacity: 1,
                             transition: {
                               type: "spring",
@@ -84,6 +86,7 @@ export const AdaptiveNavigate = ({ linkList, onClose }: Props) => {
                             },
                           },
                           closed: {
+                            y: -10,
                             opacity: 0,
                             transition: {
                               type: "spring",

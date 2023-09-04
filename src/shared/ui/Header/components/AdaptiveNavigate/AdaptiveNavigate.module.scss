@@ -36,20 +36,22 @@
   }
 
   &_nav {
-    padding: 20px;
+    //  padding: 20px;
     align-self: flex-start;
     width: 100%;
   }
 
   &_list {
     display: flex;
+    overflow: hidden;
     flex-direction: column;
-    gap: clamp(5px, 2vw, 30px);
+     gap: clamp(5px, 2vw, 30px);
     width: 100%;
   }
 
   &_item {
     button {
+      display: block;
       width: 100%;
       padding: 10px 20px;
 
@@ -73,11 +75,12 @@
 }
 
 .nested_links {
-  padding: 10px 20px;
-
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+
+  padding: 10px 20px;
+
 
   border-top: 2px solid #000;
   border-bottom: 2px solid #000;
@@ -87,5 +90,5 @@
 }
 
 .nested_link {
-  padding: 10px;
+    padding: 10px;
 }

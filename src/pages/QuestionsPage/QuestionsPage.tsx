@@ -63,11 +63,13 @@ export const QuestionsPage = () => {
     open: {
       style: { borderColor: "var(--primary-color)" },
       borderColor: "var(--primary-color)",
+      height: "auto",
+      padding: "20px 20px",
     },
     closed: {
       borderColor: "transparent",
       height: 0,
-      padding: 0,
+      padding: "0px 20px",
       overflow: "hidden",
     },
   };
