@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { useTranslation } from "react-i18next";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import axios from "axios";
 import rehypeRaw from "rehype-raw";
@@ -49,10 +50,11 @@ export const FactPage = () => {
     <div className={styles.root}>
       {!loading ? (
         <Container>
-          <img
+          <LazyLoadImage
             src={`${serverPath}/uploads/${translations?.image}`}
             alt=""
             width="100%"
+            effect="blur"
             style={{ marginBottom: 30, maxHeight: "450px", objectFit: "cover" }}
           />
           <ReactMarkdown
