@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 
 import { HTag } from "../../shared/ui/Head/HTag";
 
-import styles from "./QuizPage.module.scss";
 import { PTag } from "../../shared/ui/Paragraph/PTag";
-import { Button } from "../../shared/ui/Button/Button";
+
+import styles from "./QuizPage.module.scss";
 
 interface Question {
   id: number;
@@ -14,36 +14,36 @@ interface Question {
 }
 
 interface Answer {
-  title: string;
-  text: string;
+  title: () => string;
+  text: () => string;
   color: string;
 }
 
-const answerList: Answer[] = [
-  {
-    title: "Низкий риск колоректального рака",
-    text: "Ваши результаты указывают на низкую вероятность наличия симптомов колоректального рака. Важно помнить, что этот результат не является заключительным диагнозом.",
-    color: "#01d124",
-  },
-  {
-    title: "Умеренный риск",
-    text: "Ваши результаты указывают на среднюю вероятность наличия симптомов колоректального рака. Однако, при возрасте старше 50 лет необходимо обязательно пройти скрининг на колректальный рак.",
-    color: "#dfdc27",
-  },
-  {
-    title: "Повышенный риск колоректального рака",
-    text: "Ваши результаты указывают на предположительную вероятность наличия симптомов колоректального рака. Это может означать, что Вы можете быть подвержены колоректальному раку. Мы предлагаем Вам обратиться к своему лечащему врачу в ПМСП.",
-    color: "#fca93d",
-  },
-  {
-    title: "Высокий риск колоректального рака",
-    text: "Ваши результаты указывают на предположительную вероятность наличия симптомов колоректального рака. Это может означать, что Вы можете быть подвержены колоректальному раку.Мы предлагаем Вам обратиться к своему лечащему врачу в ПМСП.",
-    color: "#ff4b4b",
-  },
-];
-
 export const QuizPage = () => {
   const { t } = useTranslation();
+
+  const answerList: Answer[] = [
+    {
+      title: () => t("quiz-answers.low.title"),
+      text: () => t("quiz-answers.low.text"),
+      color: "#01d124",
+    },
+    {
+      title: () => t("quiz-answers.moderate.title"),
+      text: () => t("quiz-answers.moderate.text"),
+      color: "#dfdc27",
+    },
+    {
+      title: () => t("quiz-answers.hightened.title"),
+      text: () => t("quiz-answers.hightened.text"),
+      color: "#fca93d",
+    },
+    {
+      title: () => t("quiz-answers.hight.title"),
+      text: () => t("quiz-answers.hight.text"),
+      color: "#ff4b4b",
+    },
+  ];
 
   const questions: Question[] = [
     {
@@ -108,21 +108,23 @@ export const QuizPage = () => {
       text: () => t("questions-list.item-12"),
       score: 1,
     },
+    {
+      id: 13,
+      text: () => t("questions-list.item-13"),
+      score: 0,
+    },
   ];
 
+  const [currentQuestion, setCurrentQuestion] = useState<Question>(
+    questions[0]
+  );
   const [answers, setAnswers] = useState<{
     [questionId: number]: "Yes" | "No";
   }>({});
   const [score, setScore] = useState<number>(0);
+
   const [finalText, setFinalText] = useState<Answer | null>();
   const [visible, setVisible] = useState<boolean>(false);
-
-  const handleAnswerChange = (questionId: number, answer: "Yes" | "No") => {
-    setAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [questionId]: answer,
-    }));
-  };
 
   const handleAnswer = (score: number) => {
     console.log(score);
@@ -148,6 +150,13 @@ export const QuizPage = () => {
     }
   };
 
+  const handleAnswerChange = (questionId: number, answer: "Yes" | "No") => {
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionId]: answer,
+    }));
+  };
+
   const handleSubmit = () => {
     let newScore = 0;
     questions.forEach((question) => {
@@ -156,8 +165,17 @@ export const QuizPage = () => {
       }
     });
     setScore(newScore);
-    handleAnswer(newScore);
     setVisible(true);
+    handleAnswer(newScore);
+  };
+
+  const handleClick = (id: number, answer: "Yes" | "No") => {
+    if (currentQuestion.id <= 12) {
+      handleAnswerChange(id, answer);
+      setCurrentQuestion((prev) => questions[prev.id]);
+    } else {
+      handleSubmit();
+    }
   };
 
   return (
@@ -168,40 +186,29 @@ export const QuizPage = () => {
 
       {!visible ? (
         <>
-          {questions.map((question, index) => (
-            <div key={question.id}>
-              <PTag style={{ marginTop: 15 }}>
-                {index + 1}. {question.text()}
-                <span className={styles.required}>({t("Required")})</span>
-              </PTag>
-              <div className={styles.labelList}>
-                <label className={styles.label}>
-                  <PTag variant="sm">{t("Yes")}</PTag>
-                  <input
-                    type="radio"
-                    name={`question-${question.id}`}
-                    value="Да"
-                    checked={answers[question.id] === "Yes"}
-                    onChange={() => handleAnswerChange(question.id, "Yes")}
-                  />
-                </label>
-                <label className={styles.label}>
-                  <PTag variant="sm">{t("No")}</PTag>
-
-                  <input
-                    type="radio"
-                    name={`question-${question.id}`}
-                    value="Нет"
-                    checked={answers[question.id] === "No"}
-                    onChange={() => handleAnswerChange(question.id, "No")}
-                  />
-                </label>
-              </div>
+          <div className={styles.wrapper}>
+            <div className={styles.heading}>
+              <PTag variant="lg">{currentQuestion.text()}</PTag>
             </div>
-          ))}
-          <Button handleCLick={handleSubmit} style={{ marginTop: 30 }}>
-            {t("result-button")}
-          </Button>
+
+            <div className={styles.content}>
+              <button onClick={() => handleClick(currentQuestion.id, "Yes")}>
+                <PTag>{t("Yes")} </PTag>
+              </button>
+              {currentQuestion.id <= 12 && (
+                <button onClick={() => handleClick(currentQuestion.id, "No")}>
+                  <PTag>{t("No")} </PTag>
+                </button>
+              )}
+            </div>
+            {currentQuestion.id <= 12 && (
+              <div className={styles.footer}>
+                <div>
+                  {currentQuestion.id} из {questions.length - 1}
+                </div>
+              </div>
+            )}
+          </div>
         </>
       ) : (
         <div className={styles.result}>
@@ -209,14 +216,14 @@ export const QuizPage = () => {
             variant="lg"
             style={{ color: "var(--primary-color)", textAlign: "center" }}
           >
-            Результат
+            {t("quiz-result")}
           </PTag>
           <PTag style={{ marginTop: 10 }}>
-            Ваш результат:
+            {t("quiz-your-result")}
             <span style={{ color: finalText?.color }}>
-              "{finalText?.title}"
+              "{finalText?.title()}"
             </span>
-            . Ваш балл равен:
+            . {t("quiz-your-score")}
             <span style={{ color: finalText?.color }}>{score} из 20</span>.
           </PTag>
           <div
@@ -228,7 +235,7 @@ export const QuizPage = () => {
               margin: "20px 0",
             }}
           ></div>
-          <PTag style={{ textAlign: "justify" }}>{finalText?.text}</PTag>
+          <PTag style={{ textAlign: "justify" }}>{finalText?.text()}</PTag>
         </div>
       )}
     </div>
