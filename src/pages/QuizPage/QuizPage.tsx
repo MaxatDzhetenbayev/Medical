@@ -163,7 +163,7 @@ export const QuizPage = () => {
   return (
     <div>
       <HTag style={{ marginBottom: 30 }} variant="h2">
-        Опросник
+        {t("questionnaire-title")}
       </HTag>
 
       {!visible ? (
@@ -200,7 +200,7 @@ export const QuizPage = () => {
             </div>
           ))}
           <Button handleCLick={handleSubmit} style={{ marginTop: 30 }}>
-            Подсчитать результат
+            {t("result-button")}
           </Button>
         </>
       ) : (
