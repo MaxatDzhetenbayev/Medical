@@ -87,7 +87,7 @@ export const AdminPanel = () => {
         <div className={styles.link_wrapper}> 
           <a
             className={styles.download}
-            href="http://localhost:3001/data"
+            href={`${serverPath}/data`}
             target="_blank"
           >
             Скачать данные опроса
