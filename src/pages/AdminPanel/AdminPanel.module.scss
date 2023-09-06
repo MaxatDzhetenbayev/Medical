@@ -1,19 +1,29 @@
 .root {
   width: 99%;
-  background-color: var(--secondary-color);
   margin-top: 40px;
   padding: 20px;
 
   form {
-    margin-bottom: 20px;
+    margin: 20px 0;
   }
+}
+
+.download {
+  display: inline-block;
+  background-color: var(--primary-color);
+  padding: 10px;
+  border-radius: 8px;
+  color: var(--text-alternative-color);
+
+}
+
+.link_wrapper{
+	display: flex;
+	justify-content: flex-end;
 }
 
 .chart_wrapper {
   display: flex;
   justify-content: center;
   color: #ffffffe1;
-}
-
-@media (max-width: 980px) {
 }

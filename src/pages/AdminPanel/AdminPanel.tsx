@@ -71,7 +71,7 @@ export const AdminPanel = () => {
     datasets: [
       {
         data: counts?.map((item) => item.count),
-        backgroundColor: "#ffffffe1",
+        backgroundColor: "#2397df",
       },
     ],
   };
@@ -84,6 +84,15 @@ export const AdminPanel = () => {
   return (
     <Container>
       <div className={styles.root}>
+        <div className={styles.link_wrapper}> 
+          <a
+            className={styles.download}
+            href="http://localhost:3001/data"
+            target="_blank"
+          >
+            Скачать данные опроса
+          </a>
+        </div>
         <form
           onChange={(e: React.ChangeEvent<HTMLFormElement>) =>
             setPeriod(e.target.value)
