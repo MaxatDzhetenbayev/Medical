@@ -6,7 +6,7 @@ import axios from "axios";
 import { HTag } from "../../shared/ui/Head/HTag";
 import { PTag } from "../../shared/ui/Paragraph/PTag";
 
-import { regionsWithCities, serverPath } from "../../shared/consts/consts";
+import { locationList, serverPath } from "../../shared/consts/consts";
 
 import styles from "./QuizPage.module.scss";
 import { Button } from "@mui/material";
@@ -26,9 +26,9 @@ interface Answer {
 export const QuizPage = () => {
   const { t } = useTranslation();
 
-  const regionOptions = regionsWithCities.map((item) => ({
-    value: item.region,
-    label: item.region,
+  const locationOption = locationList.map((item) => ({
+    value: item,
+    label: item,
   }));
 
   const sexOptions = [
@@ -36,17 +36,8 @@ export const QuizPage = () => {
     { label: "Женский", value: "Женский" },
   ];
 
-  const [selectedRegion, setSelectedRegion] = useState<any>(null);
-  const [selectedCity, setSelectedCity] = useState<any>(null);
+  const [location, setLocation] = useState<any>(null);
   const [selectedSex, setSelectedSex] = useState<any>(null);
-  const citiesForSelectedRegion =
-    selectedRegion &&
-    regionsWithCities
-      .find((item) => item.region === selectedRegion.value)
-      ?.cities.map((city) => ({
-        value: city,
-        label: city,
-      }));
 
   const answerList: Answer[] = [
     {
@@ -195,8 +186,7 @@ export const QuizPage = () => {
     setStep("final");
     await axios.post(`${serverPath}/questionnaire`, {
       sex: selectedSex.value,
-      region: selectedRegion.value,
-      city: selectedCity.value,
+      location: location.value,
       score: newScore,
     });
 
@@ -228,24 +218,16 @@ export const QuizPage = () => {
             placeholder="Выберите ваш пол"
           />
           <Select
-            options={regionOptions}
+            options={locationOption}
             className={styles.select}
-            value={selectedRegion}
-            onChange={(selected) => setSelectedRegion(selected)}
+            value={location}
+            onChange={(selected) => setLocation(selected)}
             isClearable
-            placeholder="Выберите регион"
-          />
-          <Select
-            options={citiesForSelectedRegion || []}
-            className={styles.select}
-            value={selectedCity}
-            onChange={(selected) => setSelectedCity(selected)}
-            isDisabled={!selectedRegion}
-            placeholder="Выберите город"
+            placeholder="Выберите населенный пункт"
           />
           <Button
             onClick={() => {
-              !selectedRegion || !selectedSex || !selectedCity
+              !location || !selectedSex
                 ? alert("Заполните все формы")
                 : setStep("test");
             }}
