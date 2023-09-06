@@ -15,9 +15,8 @@
   border-radius: 20px;
 }
 
-
-.heading{
-	text-align: center;
+.heading {
+  text-align: center;
 }
 
 .content {
@@ -43,19 +42,6 @@
 
   display: flex;
   justify-content: center;
-
-  // TODO Не забыть убрать
-  //   button {
-  //     padding: 10px;
-
-  //     border: none;
-  //     border-radius: 50%;
-
-  //     background-color: var(--primary-color);
-  //     color: var(--text-alternative-color);
-
-  //     cursor: pointer;
-  //   }
 }
 
 .label {
@@ -64,13 +50,13 @@
   gap: 10px;
 }
 
-.required {
-  color: red;
-}
-
 .result {
   width: 100%;
   padding: 40px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.select {
+  margin-top: 20px;
 }

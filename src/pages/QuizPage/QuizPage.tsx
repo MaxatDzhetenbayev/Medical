@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { HTag } from "../../shared/ui/Head/HTag";
+import Select from "react-select";
+import axios from "axios";
 
+import { HTag } from "../../shared/ui/Head/HTag";
 import { PTag } from "../../shared/ui/Paragraph/PTag";
 
+import { regionsWithCities, serverPath } from "../../shared/consts/consts";
+
 import styles from "./QuizPage.module.scss";
+import { Button } from "@mui/material";
 
 interface Question {
   id: number;
@@ -18,24 +23,30 @@ interface Answer {
   color: string;
 }
 
-// type OptionType = {
-//   label: string;
-//   value: string;
-// };
-
 export const QuizPage = () => {
   const { t } = useTranslation();
 
-  //   const [regionOptions, setRegionOptions] = useState<OptionType[]>([]);
-  //   const [cityOptions, seCityOptions] = useState<OptionType[]>([]);
+  const regionOptions = regionsWithCities.map((item) => ({
+    value: item.region,
+    label: item.region,
+  }));
 
-  //   const handleSetRegion = () => {
-  // 	setRegionOptions([
-  // 	  ...regionsWithCities.map((item) => {
-  // 		 return { label: item.region, value: item.region };
-  // 	  }),
-  // 	]);
-  //  };
+  const sexOptions = [
+    { label: "Мужской", value: "Мужской" },
+    { label: "Женский", value: "Женский" },
+  ];
+
+  const [selectedRegion, setSelectedRegion] = useState<any>(null);
+  const [selectedCity, setSelectedCity] = useState<any>(null);
+  const [selectedSex, setSelectedSex] = useState<any>(null);
+  const citiesForSelectedRegion =
+    selectedRegion &&
+    regionsWithCities
+      .find((item) => item.region === selectedRegion.value)
+      ?.cities.map((city) => ({
+        value: city,
+        label: city,
+      }));
 
   const answerList: Answer[] = [
     {
@@ -136,10 +147,10 @@ export const QuizPage = () => {
   const [answers, setAnswers] = useState<{
     [questionId: number]: "Yes" | "No";
   }>({});
-  const [score, setScore] = useState<number>(0);
 
+  const [step, setStep] = useState<"form" | "test" | "final">("form");
+  const [score, setScore] = useState<number>(0);
   const [finalText, setFinalText] = useState<Answer | null>();
-  const [visible, setVisible] = useState<boolean>(false);
 
   const handleAnswer = (score: number) => {
     console.log(score);
@@ -172,7 +183,7 @@ export const QuizPage = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     let newScore = 0;
     questions.forEach((question) => {
       if (answers[question.id] === "Yes") {
@@ -180,7 +191,15 @@ export const QuizPage = () => {
       }
     });
     setScore(newScore);
-    setVisible(true);
+
+    setStep("final");
+    await axios.post(`${serverPath}/questionnaire`, {
+      sex: selectedSex.value,
+      region: selectedRegion.value,
+      city: selectedCity.value,
+      score: newScore,
+    });
+
     handleAnswer(newScore);
   };
 
@@ -198,8 +217,45 @@ export const QuizPage = () => {
       <HTag style={{ marginBottom: 30 }} variant="h2">
         {t("questionnaire-title")}
       </HTag>
-
-      {!visible ? (
+      {step === "form" && (
+        <div>
+          <Select
+            options={sexOptions}
+            className={styles.select}
+            value={selectedSex}
+            onChange={(selected) => setSelectedSex(selected)}
+            isClearable
+            placeholder="Выберите ваш пол"
+          />
+          <Select
+            options={regionOptions}
+            className={styles.select}
+            value={selectedRegion}
+            onChange={(selected) => setSelectedRegion(selected)}
+            isClearable
+            placeholder="Выберите регион"
+          />
+          <Select
+            options={citiesForSelectedRegion || []}
+            className={styles.select}
+            value={selectedCity}
+            onChange={(selected) => setSelectedCity(selected)}
+            isDisabled={!selectedRegion}
+            placeholder="Выберите город"
+          />
+          <Button
+            onClick={() => {
+              !selectedRegion || !selectedSex || !selectedCity
+                ? alert("Заполните все формы")
+                : setStep("test");
+            }}
+            style={{ marginTop: 20 }}
+          >
+            Начать тест
+          </Button>
+        </div>
+      )}
+      {step === "test" && (
         <>
           <div className={styles.wrapper}>
             <div className={styles.heading}>
@@ -225,7 +281,8 @@ export const QuizPage = () => {
             )}
           </div>
         </>
-      ) : (
+      )}
+      {step === "final" && (
         <div className={styles.result}>
           <PTag
             variant="lg"

@@ -1,5 +1,4 @@
 export const serverPath = "https://medical-server-gtqx.onrender.com";
-// http://localhost:3001
 
 export const regionsWithCities = [
   {
