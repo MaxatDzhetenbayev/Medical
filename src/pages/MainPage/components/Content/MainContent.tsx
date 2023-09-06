@@ -24,7 +24,13 @@ export const MainContent = () => {
           <PTag style={{ marginTop: "10px", textAlign: "justify" }}>
             <Markdown>{t("whats-cancer.text-3")}</Markdown>
           </PTag>
-          <PTag style={{ marginTop: "10px", textAlign: "justify", color: "var(--primary-color)" }}>
+          <PTag
+            style={{
+              marginTop: "10px",
+              textAlign: "justify",
+              color: "var(--primary-color)",
+            }}
+          >
             <Markdown>{t("whats-cancer.text-4")}</Markdown>
           </PTag>
         </div>

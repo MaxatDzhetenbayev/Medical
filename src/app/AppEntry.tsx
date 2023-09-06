@@ -10,9 +10,7 @@ import "../shared/internationalization/changeSiteName.ts";
 import { Loading } from "../shared/ui/Loading/Loading.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Suspense fallback={<Loading />}>
-      <RouterProvider router={AppRouter()} />
-    </Suspense>
-  </React.StrictMode>
+  <Suspense fallback={<Loading />}>
+    <RouterProvider router={AppRouter()} />
+  </Suspense>
 );

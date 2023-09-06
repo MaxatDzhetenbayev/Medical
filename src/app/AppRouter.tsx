@@ -13,6 +13,8 @@ import {
 } from "../pages";
 
 import { MarkdownPage } from "../pages/MarkdownPage";
+import { AuthPage } from "../pages/AuthPage/AuthPage";
+import { AdminPanel } from "../pages/AdminPanel/AdminPanel";
 
 export const AppRouter = () =>
   createBrowserRouter([
@@ -27,6 +29,14 @@ export const AppRouter = () =>
         {
           path: "/mark",
           element: <MarkdownPage />,
+        },
+        {
+          path: "/auth",
+          element: <AuthPage />,
+        },
+        {
+          path: "/admin",
+          element: <AdminPanel />,
         },
       ],
     },

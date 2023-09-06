@@ -18,8 +18,24 @@ interface Answer {
   color: string;
 }
 
+// type OptionType = {
+//   label: string;
+//   value: string;
+// };
+
 export const QuizPage = () => {
   const { t } = useTranslation();
+
+  //   const [regionOptions, setRegionOptions] = useState<OptionType[]>([]);
+  //   const [cityOptions, seCityOptions] = useState<OptionType[]>([]);
+
+  //   const handleSetRegion = () => {
+  // 	setRegionOptions([
+  // 	  ...regionsWithCities.map((item) => {
+  // 		 return { label: item.region, value: item.region };
+  // 	  }),
+  // 	]);
+  //  };
 
   const answerList: Answer[] = [
     {
