@@ -10,6 +10,7 @@ import { locationList, serverPath } from "../../shared/consts/consts";
 
 import styles from "./QuizPage.module.scss";
 import { Button } from "@mui/material";
+import { Dna } from 'react-loader-spinner';
 
 interface Question {
   id: number;
@@ -266,30 +267,45 @@ export const QuizPage = () => {
       )}
       {step === "final" && (
         <div className={styles.result}>
-          <PTag
-            variant="lg"
-            style={{ color: "var(--primary-color)", textAlign: "center" }}
-          >
-            {t("quiz-result")}
-          </PTag>
-          <PTag style={{ marginTop: 10 }}>
-            {t("quiz-your-result")}
-            <span style={{ color: finalText?.color }}>
-              "{finalText?.title()}"
-            </span>
-            . {t("quiz-your-score")}
-            <span style={{ color: finalText?.color }}>{score} из 20</span>.
-          </PTag>
-          <div
-            style={{
-              width: "100%",
-              height: 1,
-              boxShadow:
-                "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
-              margin: "20px 0",
-            }}
-          ></div>
-          <PTag style={{ textAlign: "justify" }}>{finalText?.text()}</PTag>
+          {finalText ? (
+            <>
+              <PTag
+                variant="lg"
+                style={{ color: "var(--primary-color)", textAlign: "center" }}
+              >
+                {t("quiz-result")}
+              </PTag>
+              <PTag style={{ marginTop: 10 }}>
+                {t("quiz-your-result")}
+                <span style={{ color: finalText?.color }}>
+                  "{finalText?.title()}"
+                </span>
+                . {t("quiz-your-score")}
+                <span style={{ color: finalText?.color }}>{score} из 20</span>.
+              </PTag>
+              <div
+                style={{
+                  width: "100%",
+                  height: 1,
+                  boxShadow:
+                    "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
+                  margin: "20px 0",
+                }}
+              ></div>
+              <PTag style={{ textAlign: "justify" }}>{finalText?.text()}</PTag>
+            </>
+          ) : (
+            <div className={styles.loader_wrapper}>
+              <Dna
+                visible={true}
+                height="180"
+                width="180"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

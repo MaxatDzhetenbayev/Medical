@@ -8,7 +8,7 @@ i18n
   .use(Backend)
   .use(LanguageDetector)
   .init({
-    fallbackLng: "kz",
+    fallbackLng: "ru",
     //  resources: {
     //    kz: {
     //      cancer: "Рак",

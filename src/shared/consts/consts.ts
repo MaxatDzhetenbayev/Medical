@@ -1,4 +1,6 @@
-export const serverPath = "https://medical-server-gtqx.onrender.com";
+export const serverPath = "http://localhost:3001";
+
+// https://medical-server-gtqx.onrender.com
 
 export const locationList = [
   "Город Астана",
